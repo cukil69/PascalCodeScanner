@@ -1,11 +1,11 @@
 object Form1: TForm1
-  Left = 797
-  Height = 484
-  Top = 300
-  Width = 1100
+  Left = 698
+  Height = 533
+  Top = 180
+  Width = 951
   Caption = 'ScannerLexical'
-  ClientHeight = 484
-  ClientWidth = 1100
+  ClientHeight = 533
+  ClientWidth = 951
   DesignTimePPI = 120
   LCLVersion = '2.0.0.4'
   object Panel1: TPanel
@@ -39,24 +39,24 @@ object Form1: TForm1
       Height = 392
       Top = 48
       Width = 250
-      AutoFillColumns = True
       ColCount = 2
       Columns = <      
         item
-          Title.Caption = 'Token'
-          Width = 123
+          Title.Caption = 'No'
+          Width = 50
         end      
         item
-          Title.Caption = 'Kategori'
-          Width = 123
+          Title.Caption = 'Token'
+          Width = 196
         end>
       ExtendedSelect = False
       FixedCols = 0
       RowCount = 1
+      ScrollBars = ssAutoVertical
       TabOrder = 2
       ColWidths = (
-        123
-        123
+        50
+        196
       )
     end
     object Label1: TLabel
@@ -67,73 +67,22 @@ object Form1: TForm1
       Caption = 'TOKEN'
       ParentColor = False
     end
-    object Label2: TLabel
-      Left = 728
+    object PROSES: TLabel
+      Left = 760
       Height = 20
       Top = 8
-      Width = 68
-      Caption = 'KATEGORI'
+      Width = 52
+      Caption = 'PROSES'
       ParentColor = False
     end
-    object Label3: TLabel
-      Left = 944
-      Height = 20
-      Top = 8
-      Width = 74
-      Caption = 'IDENTIFIER'
-      ParentColor = False
+    object inProses: TMemo
+      Left = 648
+      Height = 392
+      Top = 48
+      Width = 296
+      ScrollBars = ssAutoVertical
+      TabOrder = 3
     end
-    object Label4: TLabel
-      Left = 360
-      Height = 20
-      Top = 456
-      Width = 412
-      Caption = 'NIM: 10116900      Nama: Syauqi Ilham Alfaraci      Kelas: IF14K'
-      ParentColor = False
-    end
-  end
-  object tableKategori: TStringGrid
-    Left = 640
-    Height = 392
-    Top = 48
-    Width = 250
-    AutoFillColumns = True
-    ColCount = 2
-    Columns = <    
-      item
-        Title.Caption = 'Kategori'
-        Width = 123
-      end    
-      item
-        Title.Caption = 'Jumlah'
-        Width = 123
-      end>
-    FixedCols = 0
-    RowCount = 1
-    TabOrder = 1
-    ColWidths = (
-      123
-      123
-    )
-  end
-  object tableIdent: TStringGrid
-    Left = 888
-    Height = 392
-    Top = 48
-    Width = 202
-    AutoFillColumns = True
-    ColCount = 1
-    Columns = <    
-      item
-        Title.Caption = 'Identifier'
-        Width = 198
-      end>
-    FixedCols = 0
-    RowCount = 1
-    TabOrder = 2
-    ColWidths = (
-      198
-    )
   end
   object OpenDialog1: TOpenDialog
     left = 312
