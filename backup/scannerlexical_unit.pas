@@ -35,6 +35,7 @@ type
     procedure gExpression(); 
     procedure gFunction();
     procedure gIf();
+    procedure gWrite();
     procedure gFor();
     procedure gWhile();
     procedure gRepeat();
@@ -304,9 +305,9 @@ implementation
   procedure TForm1.cekTerminal(s: String);
   begin
        if arrToken[i] = s then
-          i := i+1
+          i := i+1;
        else
-         inProses.Lines.Add('Parsing failed');
+          inProses.Lines.Add('Parsing failed');
   end;
 
   procedure TForm1.gVar();
@@ -389,11 +390,12 @@ implementation
   procedure TForm1.gStmt();
   begin
     inProses.Lines.Add('>> <stmt>');
-    case LeftStr(arrToken[i], 1) of
-       'i': gIf();
-       'f': gFor();
-       'w': gWhile();
-       'r': gRepeat();
+    case LeftStr(arrToken[i], 2) of
+       'if': gIf();
+       'fo': gFor();
+       'wh': gWhile();
+       'wr': gWrite();
+       're': gRepeat();
     else
       begin
            if arrToken[i] <> 'end' then
@@ -433,6 +435,12 @@ implementation
     gStmtList();
   end;
 
+  procedure TForm1.gWrite();
+  begin
+    inProses.Lines.Add('>> <write>');
+    cekTerminal('write');
+  end;
+
   procedure TForm1.gFor();
   begin
     inProses.Lines.Add('>> <for>');
@@ -443,6 +451,11 @@ implementation
   begin
     inProses.Lines.Add('>> <while>');
     cekTerminal('while');
+    gVar();
+    gOperator();
+    gVar();
+    cekTerminal('do');
+    gStmtList();
   end;
 
   procedure TForm1.gRepeat();

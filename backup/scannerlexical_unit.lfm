@@ -1,13 +1,13 @@
 object Form1: TForm1
-  Left = 698
-  Height = 533
-  Top = 180
+  Left = 969
+  Height = 841
+  Top = 162
   Width = 951
   Caption = 'ScannerLexical'
-  ClientHeight = 533
+  ClientHeight = 841
   ClientWidth = 951
   DesignTimePPI = 120
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '1.8.2.0'
   object Panel1: TPanel
     Left = 0
     Height = 764
@@ -61,17 +61,17 @@ object Form1: TForm1
     end
     object Label1: TLabel
       Left = 488
-      Height = 20
+      Height = 22
       Top = 8
-      Width = 46
+      Width = 59
       Caption = 'TOKEN'
       ParentColor = False
     end
     object PROSES: TLabel
       Left = 760
-      Height = 20
+      Height = 22
       Top = 8
-      Width = 52
+      Width = 67
       Caption = 'PROSES'
       ParentColor = False
     end
