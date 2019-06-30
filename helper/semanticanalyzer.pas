@@ -5,7 +5,7 @@ unit SemanticAnalyzer;
 interface
 
 uses
-  Classes, SysUtils;
+    Classes, SysUtils;
 
 implementation
 
