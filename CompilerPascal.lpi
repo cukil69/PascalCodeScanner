@@ -26,7 +26,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="5">
+    <Units Count="6">
       <Unit0>
         <Filename Value="CompilerPascal.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -53,6 +53,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="SemanticAnalyzer"/>
       </Unit4>
+      <Unit5>
+        <Filename Value="helper/filehelper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FileHelper"/>
+      </Unit5>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

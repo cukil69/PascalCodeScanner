@@ -11,7 +11,8 @@ uses
   Form,
   LexicalAnalyzer,
   ParserAnalyzer,
-  SemanticAnalyzer
+  SemanticAnalyzer,
+  FileHelper
   { you can add units after this };
 
 {$R *.res}

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  StdCtrls, Grids;
+  StdCtrls, Grids, LexicalAnalyzer, FileHelper;
 
 type
 
@@ -26,8 +26,6 @@ type
     TOKEN_TABLE: TStringGrid;
 
     procedure BTN_FILEClick(Sender: TObject);
-    procedure SET_FILESTRING(DIALOG: TOpenDialog);
-    procedure SET_CLOSEFILE();
   private
 
   public
@@ -36,7 +34,8 @@ type
 
 var
   Form1: TForm1;
-  asa: String;
+  Lexical: LexicalAnalyzerHelper;
+  FileReader: ReadFileHeper;
   FileString: file of char;
 
 implementation
@@ -45,24 +44,18 @@ implementation
 
 procedure TForm1.BTN_FILEClick(Sender: TObject);
 begin
-  if FILE_DIALOG.Execute then
+  Lexical.setProgressComponent(PARSING_TABLE);
+  if FileReader.setFileString(FILE_DIALOG) then
   begin
-    SET_FILESTRING(FILE_DIALOG);
-    CODE_TABLE.Lines.LoadFromFile(FILE_DIALOG.Filename);
-    reset(FileString);
-    SET_CLOSEFILE();
+    CODE_TABLE.Lines.LoadFromFile(FileReader.ObjDialog.Filename);
+    Lexical.run(FileReader.FileString);
+    FileReader.setCloseFile();
   end;
 end;
 
-procedure TForm1.SET_FILESTRING(DIALOG: TOpenDialog);
 begin
-  system.Assign(FileString, DIALOG.Filename);
-end;
-
-procedure TForm1.SET_CLOSEFILE();
-begin
-  closefile(FileString);
-end;
-
+  Lexical := LexicalAnalyzerHelper.Create;
+  FileReader := ReadFileHeper.Create;
 end.
+
 
