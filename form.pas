@@ -16,12 +16,12 @@ type
     BTN_FILE: TButton;
     CODE_TABLE: TMemo;
     PARSING_TABLE: TMemo;
-    Label1: TLabel;
+    TOKEN_LABEL: TLabel;
     LABEL_TOKEN: TLabel;
-    Label3: TLabel;
+    SEMANTIC_LABEL: TLabel;
     SUCCESS_SEMANTIC: TLabel;
     FILE_DIALOG: TOpenDialog;
-    Panel1: TPanel;
+    MAIN_PANEL: TPanel;
     PARSING_PROCESS: TLabel;
     TOKEN_TABLE: TStringGrid;
     procedure BTN_FILEClick(Sender: TObject);

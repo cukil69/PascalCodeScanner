@@ -8,7 +8,10 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms,
-  Form
+  Form,
+  LexicalAnalyzer,
+  ParserAnalyzer,
+  SemanticAnalyzer
   { you can add units after this };
 
 {$R *.res}
