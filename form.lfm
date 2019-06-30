@@ -1,0 +1,115 @@
+object Form1: TForm1
+  Left = 379
+  Height = 504
+  Top = 172
+  Width = 954
+  Caption = 'Compiler'
+  ClientHeight = 504
+  ClientWidth = 954
+  DesignTimePPI = 120
+  LCLVersion = '1.8.2.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 500
+    Top = 8
+    Width = 1232
+    ClientHeight = 500
+    ClientWidth = 1232
+    Color = clWhite
+    ParentColor = False
+    TabOrder = 0
+    object CODE_TABLE: TMemo
+      Left = 8
+      Height = 393
+      Top = 47
+      Width = 376
+      TabOrder = 0
+    end
+    object BTN_FILE: TButton
+      Left = 8
+      Height = 31
+      Top = 8
+      Width = 376
+      Caption = 'Open File'
+      OnClick = BTN_FILEClick
+      TabOrder = 1
+    end
+    object TOKEN_TABLE: TStringGrid
+      Left = 392
+      Height = 392
+      Top = 48
+      Width = 250
+      ColCount = 2
+      Columns = <      
+        item
+          Title.Caption = 'No'
+          Width = 50
+        end      
+        item
+          Title.Caption = 'Token'
+          Width = 196
+        end>
+      ExtendedSelect = False
+      FixedCols = 0
+      RowCount = 1
+      ScrollBars = ssAutoVertical
+      TabOrder = 2
+      ColWidths = (
+        50
+        196
+      )
+    end
+    object Label1: TLabel
+      Left = 488
+      Height = 22
+      Top = 8
+      Width = 59
+      Caption = 'TOKEN'
+      ParentColor = False
+    end
+    object PARSING_PROCESS: TLabel
+      Left = 720
+      Height = 22
+      Top = 8
+      Width = 156
+      Caption = 'PARSING PROCESS'
+      ParentColor = False
+    end
+    object PARSING_TABLE: TMemo
+      Left = 648
+      Height = 392
+      Top = 48
+      Width = 296
+      ScrollBars = ssAutoVertical
+      TabOrder = 3
+    end
+    object Label3: TLabel
+      Left = 8
+      Height = 22
+      Top = 456
+      Width = 175
+      Caption = 'SEMANTIC SUCCESS :'
+      ParentColor = False
+    end
+    object SUCCESS_SEMANTIC: TLabel
+      Left = 208
+      Height = 22
+      Top = 456
+      Width = 5
+      Caption = '-'
+      ParentColor = False
+    end
+  end
+  object LABEL_TOKEN: TLabel
+    Left = 488
+    Height = 22
+    Top = 8
+    Width = 59
+    Caption = 'TOKEN'
+    ParentColor = False
+  end
+  object FILE_DIALOG: TOpenDialog
+    left = 496
+    top = 240
+  end
+end
