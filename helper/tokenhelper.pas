@@ -38,7 +38,7 @@ begin
         (ch <> '=') and (ch <> ':') and (ch <> ',') and (ch <> ';') and
         (ch <> ' ') and (ch <> '(') and (ch <> ')') and (ch <> '[') and
         (ch <> ']') and (ch <> '<') and (ch <> '>') and (ch <> #13) and
-        (ch <> #10) and (ch <> #9) and (ch <> '.');
+        (ch <> #10) and (ch <> #9);
 end;
 
 end.
