@@ -10,16 +10,28 @@ uses
 
 type
     { LexicalAnalyzerHelper }
+    record_token =
+        record
+            token: string[20];
+            description: string[30];
+            count: integer;
+        end;
+    TokenCategory = specialize TFPGMap<String, record_token>;
+    record_identifier =
+        record
+            value: TokenCategory;
+        end;
+    list_token = array of record_token;
     FileStringType = file of char;
     TokenMaps = specialize TFPGMap<String, String>;
-    TokenCategory = specialize TFPGMap<String, Integer>;
+    TokenIdentifier = specialize TFPGMap<String, record_identifier>;
 
     LexicalAnalyzerHelper = class
         FileString: file of char;
         ProgressElement: TMemo;
         TableTokenElement: TStringGrid;
         ArrayToken: array of TokenMaps;
-        ArrayCategory: TokenCategory;
+        ArrayCategory: TokenIdentifier;
         procedure setProgressComponent(Element: TMemo);
         procedure setTableTokenElement(Element: TStringGrid);
         procedure run(var StringFile: FileStringType);
@@ -28,6 +40,7 @@ type
         procedure CheckKeywords(character: string);
         procedure iterateText();
         procedure reset();
+        procedure procedurePrintToken();
     end;
 
 var
@@ -50,7 +63,7 @@ end;
 procedure LexicalAnalyzerHelper.run(var StringFile: FileStringType);
 begin
     FileString := StringFile;
-    ArrayCategory := TokenCategory.Create;
+    ArrayCategory := TokenIdentifier.Create;
     reset();
     ProgressElement.Lines.Add('Tokenizing start');
     iterateText();
@@ -61,6 +74,8 @@ end;
 procedure LexicalAnalyzerHelper.WriteData(token, description, identifier: string);
 var
     result: TokenMaps;
+    TempIdentifier: record_identifier;
+    TempToken: record_token;
 begin
     result := TokenMaps.Create;
     result['token'] := token;
@@ -68,10 +83,34 @@ begin
     result['identifier'] := identifier;
 
     if ArrayCategory.IndexOf(identifier) >= 0 then
-        ArrayCategory[identifier] := ArrayCategory[identifier] + 1
+        begin
+            TempIdentifier := ArrayCategory[identifier];
+
+            if TempIdentifier.value.IndexOf(token) >= 0 then
+                begin
+                    TempToken := TempIdentifier.value[token];
+                    TempToken.count := TempToken.count + 1;
+                end
+            else
+                begin
+                    TempToken.count := 1;
+                    TempToken.token := token;
+                    TempToken.description := description;
+                end;
+            
+            TempIdentifier.value[token] := TempToken;
+            ArrayCategory[identifier] := TempIdentifier;
+        end
     else
-        ArrayCategory[identifier] := 1;
-    
+        begin
+            TempIdentifier.value := TokenCategory.create;
+            TempToken.count := 1;
+            TempToken.token := token;
+            TempToken.description := description;
+            TempIdentifier.value[token] := TempToken;
+            ArrayCategory[identifier] := TempIdentifier;
+        end;
+
     setLength(ArrayToken, length(ArrayToken) + 1);
     ArrayToken[high(ArrayToken)] := result;
     TableTokenElement.InsertRowWithValues(RowTable, [IntToStr(length(ArrayToken)), token, identifier]);
@@ -254,19 +293,42 @@ begin
         tempString := '';
         CheckSymbols(tempChar);
     end;
+
+    procedurePrintToken();
 end;
 
 procedure LexicalAnalyzerHelper.reset();
-var
-    index: integer;
 begin
-    for index := 0 to ArrayCategory.Count - 1 do
-        ArrayCategory[ArrayCategory.Keys[index]] := 0;
+    // [Tl;Dr] This section must comment cause i think,
+    // i must create multiple tree for get count of identifier :)
+    //
+    // for index := 0 to ArrayCategory.Count - 1 do
+    //     ArrayCategory[ArrayCategory.Keys[index]] := Array;
 
     setLength(ArrayToken, 0);
     TableTokenElement.RowCount := 1;
     ProgressElement.Lines.Clear();
     RowTable := 1;
+end;
+
+procedure LexicalAnalyzerHelper.procedurePrintToken();
+var
+    i: integer;
+    j: integer;
+    TempIdentifier: record_identifier;
+    TempToken: record_token;
+begin
+    for i := 0 to ArrayCategory.Count - 1 do
+        begin
+            WriteLn(ArrayCategory.Keys[i]);
+            TempIdentifier := ArrayCategory.Data[i];
+
+            for j:= 0 to TempIdentifier.value.Count - 1 do
+                begin
+                    TempToken := TempIdentifier.value.Data[j];
+                    WriteLn(TempIdentifier.value.Keys[j] + ': ' + IntToStr(TempToken.count));
+                end;
+        end;
 end;
 
 begin
