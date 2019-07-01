@@ -45,6 +45,7 @@ implementation
 procedure TForm1.BTN_FILEClick(Sender: TObject);
 begin
     Lexical.setProgressComponent(PARSING_TABLE);
+    Lexical.setTableTokenElement(TOKEN_TABLE);
     if FileReader.setFileString(FILE_DIALOG) then
     begin
         CODE_TABLE.Lines.LoadFromFile(FileReader.ObjDialog.Filename);
