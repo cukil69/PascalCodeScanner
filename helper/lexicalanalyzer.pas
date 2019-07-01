@@ -74,7 +74,7 @@ begin
     
     setLength(ArrayToken, length(ArrayToken) + 1);
     ArrayToken[high(ArrayToken)] := result;
-    TableTokenElement.InsertRowWithValues(RowTable, [IntToStr(length(ArrayToken) - 1), token]);
+    TableTokenElement.InsertRowWithValues(RowTable, [IntToStr(length(ArrayToken)), token, identifier]);
     RowTable := RowTable + 1;
 end;
 
@@ -266,9 +266,10 @@ begin
     setLength(ArrayToken, 0);
     TableTokenElement.RowCount := 1;
     ProgressElement.Lines.Clear();
-    RowTable := 0;
+    RowTable := 1;
 end;
 
 begin
     TokenReader := TokenReaderHelper.Create;
+    RowTable := 1;
 end.

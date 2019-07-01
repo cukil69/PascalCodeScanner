@@ -2,10 +2,10 @@ object Form1: TForm1
   Left = 379
   Height = 504
   Top = 172
-  Width = 954
+  Width = 1119
   Caption = 'Compiler'
   ClientHeight = 504
-  ClientWidth = 954
+  ClientWidth = 1119
   DesignTimePPI = 120
   LCLVersion = '1.8.2.0'
   object MAIN_PANEL: TPanel
@@ -37,17 +37,21 @@ object Form1: TForm1
     object TOKEN_TABLE: TStringGrid
       Left = 392
       Height = 392
-      Top = 48
-      Width = 250
-      ColCount = 2
+      Top = 47
+      Width = 400
+      ColCount = 3
       Columns = <      
         item
           Title.Caption = 'No'
-          Width = 50
+          Width = 47
         end      
         item
           Title.Caption = 'Token'
-          Width = 196
+          Width = 180
+        end      
+        item
+          Title.Caption = 'Category'
+          Width = 170
         end>
       ExtendedSelect = False
       FixedCols = 0
@@ -55,8 +59,9 @@ object Form1: TForm1
       ScrollBars = ssAutoVertical
       TabOrder = 2
       ColWidths = (
-        50
-        196
+        47
+        180
+        170
       )
     end
     object TOKEN_LABEL: TLabel
@@ -68,7 +73,7 @@ object Form1: TForm1
       ParentColor = False
     end
     object PARSING_PROCESS: TLabel
-      Left = 720
+      Left = 888
       Height = 22
       Top = 8
       Width = 156
@@ -76,10 +81,10 @@ object Form1: TForm1
       ParentColor = False
     end
     object PARSING_TABLE: TMemo
-      Left = 648
+      Left = 800
       Height = 392
-      Top = 48
-      Width = 296
+      Top = 47
+      Width = 312
       ScrollBars = ssAutoVertical
       TabOrder = 3
     end
