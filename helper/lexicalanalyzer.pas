@@ -294,17 +294,12 @@ begin
         CheckSymbols(tempChar);
     end;
 
-    procedurePrintToken();
+    // Unused print token procedure
+    // procedurePrintToken();
 end;
 
 procedure LexicalAnalyzerHelper.reset();
 begin
-    // [Tl;Dr] This section must comment cause i think,
-    // i must create multiple tree for get count of identifier :)
-    //
-    // for index := 0 to ArrayCategory.Count - 1 do
-    //     ArrayCategory[ArrayCategory.Keys[index]] := Array;
-
     setLength(ArrayToken, 0);
     TableTokenElement.RowCount := 1;
     ProgressElement.Lines.Clear();

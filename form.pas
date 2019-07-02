@@ -6,7 +6,7 @@ interface
 
 uses
     Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-    StdCtrls, Grids, LexicalAnalyzer, FileHelper;
+    StdCtrls, Grids, LexicalAnalyzer, FileHelper, ParserAnalyzer, fgl;
 
 type
 
@@ -35,6 +35,7 @@ type
 var
     Form1: TForm1;
     Lexical: LexicalAnalyzerHelper;
+    Parser: ParserAnalyzerHelper;
     FileReader: ReadFileHeper;
     FileString: file of char;
 
@@ -43,19 +44,29 @@ implementation
 {$R *.lfm}
 
 procedure TForm1.BTN_FILEClick(Sender: TObject);
+var
+    token: specialize TFPGMap<String, String>;
 begin
     Lexical.setProgressComponent(PARSING_TABLE);
     Lexical.setTableTokenElement(TOKEN_TABLE);
+    Parser.setProgressComponent(PARSING_TABLE);
+
     if FileReader.setFileString(FILE_DIALOG) then
     begin
         CODE_TABLE.Lines.LoadFromFile(FileReader.ObjDialog.Filename);
         Lexical.run(FileReader.FileString);
+        for token in Lexical.ArrayToken do
+        begin
+            Writeln(token['token']);
+        end;
+        Parser.run(Lexical.ArrayToken);
         FileReader.setCloseFile();
     end;
 end;
 
 begin
     Lexical := LexicalAnalyzerHelper.Create;
+    Parser := ParserAnalyzerHelper.Create;
     FileReader := ReadFileHeper.Create;
 end.
 
